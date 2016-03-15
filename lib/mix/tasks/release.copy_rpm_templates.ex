@@ -29,7 +29,7 @@ defmodule Mix.Tasks.Release.Copy_rpm_templates do
     config
     |> Keyword.merge(args |> parse_args)
     |> do_copy_templates
-    info "The templates can be found in #{@_RPM_TEMPLATE_DIR}"
+    Logger.info "The templates can be found in #{@_RPM_TEMPLATE_DIR}"
   end
 
   # Clean release build
