@@ -1,7 +1,6 @@
 defmodule ReleaseManager.Plugin.Rpm do
   use ReleaseManager.Plugin
   alias ReleaseManager.Config
-  alias ReleaseManager.Utils.Logger
 
   @_SPEC                "spec"
   @_INIT_FILE           "init_script"

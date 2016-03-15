@@ -15,14 +15,14 @@ defmodule Mix.Tasks.Release.Copy_rpm_templates do
   @shortdoc "Create a copy of the Rpm Templates."
 
   use     Mix.Task
-  import  ReleaseManager.Utils
+  alias   ReleaseManager.Utils.Logger
 
   @_RPM_DIR  "rpm"
   @_RPM_TEMPLATE_DIR   Path.join([@_RPM_DIR, "templates"])
   @_TEMPLATE_FILES     ["spec", "init_script"]
 
   def run(args) do
-    debug "creating copies...."
+    Logger.debug "creating copies...."
     config = [ priv_path:  Path.join([__DIR__, "..", "..", "..", "priv"]) |> Path.expand,
                name:       Mix.project |> Keyword.get(:app) |> Atom.to_string,
              ]
@@ -47,7 +47,7 @@ defmodule Mix.Tasks.Release.Copy_rpm_templates do
       path   = Path.join([priv, "rel", "files", filename])
       target = Path.join([cwd, @_RPM_TEMPLATE_DIR, filename])
       if File.exists?(target) and !overwrite? do 
-        info "Template file #{path} exists. Please use --overwrite overwrite the existing file."
+        Logger.info "Template file #{path} exists. Please use --overwrite overwrite the existing file."
       else
         File.cp!(path, target)
       end
